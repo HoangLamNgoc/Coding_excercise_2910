@@ -1,0 +1,16 @@
+#include <iostream> 
+#include <cmath>
+#include <algorithm> 
+using namespace std; 
+
+int main()
+{
+  int n; double S=0; int j
+  cin >> n>>j; 
+	for ( int i=2; i<=n; ++i)
+ 	{ 
+       S= 1/i+S; 
+	}
+ cout << S << endl ; 
+ return 0; 
+ }
