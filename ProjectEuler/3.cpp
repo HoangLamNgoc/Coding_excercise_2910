@@ -1,8 +1,9 @@
 #include <iostream>
 #include <cmath>
 #include <algorithm>
-
+#include <vector>
 using namespace std; 
+
 bool isPrime(int x)
 {
     if (x<2) return false;
@@ -17,18 +18,20 @@ bool isPrime(int x)
 }
 
 int main() {
- long long n; long long maxval=0;
+ long long n;
  cin >> n ; 
+ vector<int> primeFactors; 
  for (long long i=1; i * i <= n;++i)
  {
-    if(n%i==0 && i!=n)
+    if(n%i==0)
     {     long long j = n/i;
-           if(isPrime(i) && i> maxval) 
-           maxval=i;
-           if(isPrime(j) && j> maxval) 
-           maxval=j;
+           if(isPrime(i))
+               primeFactors.push_back(i);
+           if(isPrime(j))
+               primeFactors.push_back(j);   
     }
  }
+   long long maxval= *max_element( primeFactors.begin(), primeFactors.end());
 cout << maxval << endl; 
     return 0 ;
 }
