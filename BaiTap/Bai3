@@ -7,7 +7,7 @@ int main()
 {
   int n; double S=0; int j
   cin >> n>>j; 
-	for ( int i=2; i<=n; ++i)
+	for ( int i=n; i>=n; --i)
  	{ 
        S= 1/i+S; 
 	}
