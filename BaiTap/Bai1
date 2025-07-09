@@ -5,16 +5,16 @@ using namespace std;
 
 int main()
 {
-  int n; double s=0; 
+  int n; double S=0; 
   cin >> n ; 
   for (int i=1; i<=n ; ++i)
   {
     if(i%2==0)
-        s= s-1/sqrt(i);
+        S= S-1/sqrt(i);
     else 
-        s= s+1/sqrt(i); 
+        S= S+1/sqrt(i); 
   }
-cout << s << endl ; 
+cout << S << endl ; 
 return 0; 
 }
     
