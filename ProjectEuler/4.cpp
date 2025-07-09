@@ -25,16 +25,16 @@ bool isPralinedromic(int x)
 int main() {
  int a,b;
  cin >> a >> b  ; 
- vector<int> PralinefromicNumber; 
+ vector<int> Pralinedrome; 
  for (a=100;a<=1000;++a)
  {  for(b=100;b<=1000;++b)
      {
         int i = a * b ;
         if(isPralinedromic(i))
-            PralinefromicNumber.push_back(i);
+            Pralinedrome.push_back(i);
      }
  }
-   int max= *max_element( PralinefromicNumber.begin(), PralinefromicNumber.end());
+   int max= *max_element( Pralinedrome.begin(), Pralinedrome.end());
 cout << max << endl; 
     return 0 ;
 }
