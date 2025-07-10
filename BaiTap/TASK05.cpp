@@ -14,5 +14,6 @@ int main()
         S= ( i - 1 )+ sqrt(S) ;
     }
     S = sqrt(S) ;
+    cout << S ; 
     return 0 ;
 }
