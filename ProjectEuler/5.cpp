@@ -4,16 +4,17 @@
 #include <vector>
 
 using namespace std; 
-bool isDivisible(int x)
-{
-    if (x<0) return false; 
-    for ( int y=1; y<=20; ++y)
-    {
-      if (x%y !=0)
-       return false;
-    }
-  return true;
+
+bool isDivisible(int n) {
+    if (i < 0) return false; 
+    for ( int i = 1; i <= 20; ++i)
+        if (n % i != 0) return false;
+return true;
 }
+
+vector <int> Number ( int n) {
+    
+
 int main() {
  int a=1;
  cin >> a; 
