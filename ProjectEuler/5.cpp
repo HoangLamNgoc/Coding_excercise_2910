@@ -16,7 +16,7 @@ int main() {
     int a=1;
     cin >> a; 
     vector <int> Number ;
-    for(int i=a; ; ++i) {
+    for(int i = a; ; ++i) {
         if (isDivisible(i)) { 
             Number.push_back(i);
             break;
