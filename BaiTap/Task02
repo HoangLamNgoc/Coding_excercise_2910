@@ -9,8 +9,8 @@ int main()
     cin >> n ; 
   	for (int i = 1; i <= n ; ++i)
     {  
-      	S = sqrt (2 + S ) ;
+      	S = sqrt ( 2 + S ) ;
     }
   	cout << S << endl; 
-  	return 0; 
+  	return 0 ; 
 }
