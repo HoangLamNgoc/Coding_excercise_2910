@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>       
 
-using namespace std; 
+using namespace std;  
 
 int main () {
 int n , dem = 0 , tong = 0 ;
