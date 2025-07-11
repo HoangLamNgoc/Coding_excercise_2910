@@ -3,7 +3,7 @@
 using namespace std; 
 
 int main () {
-	int n , dem = 0 , tong = 0 ;
+int n , dem = 0 , tong = 0 ;
 	cin >> n ; 
  	while (n > 0) {
 		dem = dem + 1 ; 
