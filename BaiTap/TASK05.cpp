@@ -4,15 +4,12 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     int n;
     cin >> n ;
     double S = 0 ;
     for ( int i = n ; i >= 1 ; --i )
-    {
         S= ( i - 1 )+ sqrt(S) ;
-    }
     S = sqrt(S) ;
     cout << S ; 
     return 0 ;
