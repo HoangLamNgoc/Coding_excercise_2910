@@ -5,13 +5,11 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     int f1 = 1 , f2 = 1 , fn ;
     int n ;
     cin >> n ;
-    for ( int i = 3 ; i <= n ; ++i)
-    {
+    for ( int i = 3 ; i <= n ; ++i) {
         fn = f1 + f2 ;
         f1 = f2 ;
         f2 = fn ;
