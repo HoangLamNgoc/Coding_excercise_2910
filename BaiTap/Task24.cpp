@@ -1,7 +1,7 @@
 # include <bits/stdc++.h>
 
 using namespace std ; 
-
+ 
 int doan_0 ( int n ) {
     int dem = 0 , maxval = 0 , count = 0 ; 
     while ( n > 0 ) {
