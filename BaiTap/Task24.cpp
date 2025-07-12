@@ -13,8 +13,9 @@ int doan_0 ( int n ) {
 				count = 1 ; 
 			}
 			else if ( dem == maxval ) count = count + 1 ; 
+		}
 		else dem = 0 ; 
-		n = n / 10 
+		n = n / 10 ;
 	}
     return count ; 
 }
