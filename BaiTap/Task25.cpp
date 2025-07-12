@@ -2,7 +2,7 @@
 
 using namespace std ; 
  
-int doan_0 ( int n ) {
+int doan_duong ( int n ) {
     int dem = 0 , maxval = 0 ; 
     while ( n > 0 ) {
 		int digit = n % 10 ; 
@@ -20,7 +20,7 @@ int doan_0 ( int n ) {
 int main () {
 	int num ; 
 	cin >> num ; 
-    cout << doan_0 ( num ) ; 
+    cout << doan_duong ( num ) ; 
     return 0 ; 
 }
     
