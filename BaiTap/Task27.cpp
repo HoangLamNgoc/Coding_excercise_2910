@@ -4,13 +4,13 @@ using namespace std ;
  
 int duong_chay ( long long n ) {
     long long dem = 0 , maxval = 0 ; 
-    n = abs(n)
+    n = abs(n) ;
     while ( n > 0 ) {
         int unit = n % 10 , tens = ( n / 10 ) % 10 ; 
-	    if ( unit = tens - 1 ) {
-            dem = dem + 1 ; 
-	        if ( dem > maxval ) maxval = dem ; 
-	    }
+        if ( unit = tens - 1 ) {
+             dem = dem + 1 ; 
+	     if ( dem > maxval ) maxval = dem ; 
+	}
 	else dem = 0 ; 	
 	n = n / 10 ; 
     }
