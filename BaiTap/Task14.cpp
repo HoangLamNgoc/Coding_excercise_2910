@@ -12,6 +12,6 @@ int main () {
         n = n / 10 ;
     }
     cout << tong ; 
-	return 0; 
+    return 0; 
 }
 		
