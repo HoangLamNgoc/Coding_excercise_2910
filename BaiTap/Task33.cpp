@@ -6,7 +6,7 @@ int min_digit(int n) {
     int minval = 10 , current_pos = -1 , count = 0 ; 
     while ( n > 0 ) {
         int digit = n % 10 ;
-        current_pos = curent_pos + 1 ;
+        current_pos = current_pos + 1 ;
         if ( digit != 0 && digit < minval) {
             minval = digit ; 
             count = current_pos ; 
