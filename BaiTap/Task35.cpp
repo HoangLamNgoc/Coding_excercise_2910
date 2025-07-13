@@ -11,6 +11,7 @@ double average_even_digit(int n) {
     } 
     if (Even_digit.size() == 0) return -1; 
     double average = (double)accumulate (Even_digit.begin(),Even_digit.end(),0) / Even_digit.size() ;  
+    // accumulate ra giá trị là int => ép về double để average trả về double 
     return average ; 
 } 
 
