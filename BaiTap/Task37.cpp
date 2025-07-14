@@ -24,8 +24,6 @@ int main () {
     int num ; 
     cin >> num ; 
     vector <int> Factors = PrimeFactors(num) ; 
-    for ( int x : Factors ) 
-        cout << x << " " ; 
-    cout << endl ; 
+    for ( int x : Factors ) cout << x << " " ; 
     return 0 ; 
 }
