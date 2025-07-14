@@ -12,6 +12,7 @@ bool isPrime(int n) {
 }
 
 int main() {
+    int num ; 
     cin >> num;
     set<int> primeFactors; 
     for (int i = 2 ; i * i <= num; ++i) {
