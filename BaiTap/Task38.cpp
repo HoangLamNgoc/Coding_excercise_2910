@@ -1,28 +1,22 @@
-#include <iostream>
-#include <cmath>
-#include <algorithm>
-#include <vector>
+#include <bits/stdc++.h>
 
 using namespace std; 
 
-bool isPrime(int n) {
-    for (int i = 2 ; i * i <= n; ++i) 
-        if (n % i == 0) return false;
-    return true; 
-}
-
-int main() {
-    int num ; 
-    cin >> num;
-    set<int> primeFactors; 
-    for (int i = 2 ; i * i <= num; ++i) {
-        if(num % i == 0) {    
-            int j = num / i;
-            if(isPrime(i)) primeFactors.insert(i);
-            if(isPrime(j)) primeFactors.insert(j);   
+set <long long> PrimeFactors(long long n) { 
+    set <long long> Factors ; 
+    for ( long long i = 2 ; i * i <= n ; ++i ) { 
+        while ( n % i == 0 ) {
+            Factors.insert(i) ; 
+            n = n / i ; 
         }
     }
-    for (int n : primeFactors ) 
-        cout << n << " " ; 
-    return 0 ;
+    if ( n > 1 ) Factors.insert(n) ; 
+    return Factors; 
+}
+int main () {
+    long long num ; 
+    cin >> num ; 
+    set <long long> Factors = PrimeFactors(num) ; 
+    for ( long long x : Factors ) cout << x << " " ; 
+    return 0 ; 
 }
