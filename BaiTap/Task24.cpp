@@ -2,19 +2,18 @@
 
 using namespace std ; 
  
-int doan_0 ( int n ) {
-    int dem = 0 , maxval = 0 , count = 0 ; 
-    while ( n > 0 ) {
+long long doan_0 ( long long n ) {
+    long long count = 0 ;
+    bool in_zero = false ; 
+    while (n) {
         int digit = n % 10 ; 
-        if ( digit == 0 ) {
-            dem = dem + 1 ; 
-            if ( dem > maxval ) {
-	        maxval = dem ; 
-	        count = 1 ; 
+        if ( digit == 0 ) { 
+            if (!in_zero) {
+	        count++ ; 
+	        in_zero = true ; 
 	    }
-	    else if ( dem == maxval ) count = count + 1 ; 
-        }
-        else dem = 0 ; 
+	}
+        else in_zero = false ;  
         n = n / 10 ;
     }
     return count ; 
