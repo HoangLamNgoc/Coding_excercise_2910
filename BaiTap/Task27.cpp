@@ -7,14 +7,14 @@ int duong_chay ( long long n ) {
     n = abs(n) ;
     while ( n > 0 ) {
         int unit = n % 10 , tens = ( n / 10 ) % 10 ; 
-        if ( unit = tens - 1 ) {
-             dem = dem + 1 ; 
+        if ( unit <= tens ) {
+             dem++ ; 
 	     if ( dem > maxval ) maxval = dem ; 
 	}
 	else dem = 0 ; 	
 	n = n / 10 ; 
     }
-    return maxval ; 
+    return maxval + 1 ; 
 }
     
 int main () {
