@@ -6,13 +6,10 @@ int main()
 {
     freopen ( "BULBS.inp", "r", stdin ) ;
     freopen ( "BULBS.out", "w", stdout ) ;
-    int n , uoc = 0 ;
+    int n ;
     cin >> n ;
-    for ( int i = 1 ; i * i <= n ; ++i ) {
-        if( n % i == 0 && n / i != i ) uoc = uoc + 2 ;
-        else if ( n % i == 0 && n / i == i) uoc = uoc + 1 ;
-    }
-    if ( uoc % 2 == 0 ) cout << "OFF" ;
-    else cout << "ON" ;
-    return 0;
+    int sq = sqrt(n);
+    if (sq * sq == n) cout << "ON";
+    else cout << "OFF";
+    return 0 ; 
 }
