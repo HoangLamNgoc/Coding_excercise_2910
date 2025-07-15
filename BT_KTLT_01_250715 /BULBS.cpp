@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     freopen ( "BULBS.inp", "r", stdin ) ;
     freopen ( "BULBS.out", "w", stdout ) ;
     int n ;
