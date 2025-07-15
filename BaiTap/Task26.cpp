@@ -3,18 +3,12 @@
 using namespace std ; 
  
 int duong_chay ( long long n ) {
-    long long count = 0, dem = 0 , maxval = 1;
+    long long count = 0, dem = 0 ;
     while (n) {
         int units = n % 10 , tens = (n / 10) % 10 ; 
-        if ( tens >= units ) {
+        if ( tens >= units )
             dem++ ; 
-	        if ( maxval == dem ) count = count + 1 ;
-	        else if ( maxval < dem ) {
-		        count = 1 ;
-				maxval = dem ; 
-	        } 
-	    }
-	    else dem = 0 ;
+	else count++ ; 
         n = n / 10 ; 
     }
     return count ; 
