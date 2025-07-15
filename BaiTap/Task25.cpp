@@ -1,10 +1,10 @@
- # include <bits/stdc++.h>
+# include <bits/stdc++.h>
 
 using namespace std ; 
  
-int doan_duong ( int n ) {
-    int dem = 0 , maxval = 0 ; 
-    while ( n > 0 ) {
+long long doan_duong ( long long n ) {
+    long long dem = 0 , maxval = 0 ; 
+    while (n) {
         int digit = n % 10 ; 
 	if ( digit != 0 ) {
             dem = dem + 1 ; 
@@ -17,9 +17,8 @@ int doan_duong ( int n ) {
 }
     
 int main () {
-    int num ; 
+    long long num ; 
     cin >> num ; 
     cout << doan_duong ( num ) ; 
     return 0 ; 
 }
-    
