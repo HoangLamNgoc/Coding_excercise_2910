@@ -6,7 +6,8 @@ long long tienve ( long long n, long long k, long long p1, long long p2 ) {
     if ( k == 0) return n * p1 ; 
     long long le = n * p1 ; 
     long long si = ((n + k - 1) / k ) * p2 ; 
-    return min ( le, si ) ;     
+    long long si_le = ( n / k ) * p2 + ( n % k ) * p1 ; 
+    return min ({si_le, le, si }) ;     
 }
 
 int main() {
