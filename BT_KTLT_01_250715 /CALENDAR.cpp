@@ -11,7 +11,6 @@ long long So_ngay (long long m , long long d) {
 
 int Thu(long long songay , int w ) {
     int thu = (songay + w - 1) % 7 + 1;
-    if ( thu > 7 ) thu -= 7 ;
     return thu ; 
 }
 
