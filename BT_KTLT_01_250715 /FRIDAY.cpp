@@ -2,7 +2,7 @@
 
 using namespace std;
 
-long long So_ngay_xau ( int k, long long n) {
+long long So_ngay_xau (int k, long long n) {
     for ( int i = 1; i <= 7 ; ++i ) {
         int thu = (k + 12) % 7; 
         if (thu == 5) 
