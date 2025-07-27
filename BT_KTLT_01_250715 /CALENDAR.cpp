@@ -1,4 +1,4 @@
-=#include<bits/stdc++.h>
+#include<bits/stdc++.h>
 
 using namespace std;
 
@@ -15,7 +15,7 @@ int Thu(long long songay , int w ) {
     return thu ; 
 }
 
-int main() {A
+int main() {
     freopen ( "CALENDAR.INP", "r" , stdin ); 
     freopen ( "CALENDAR.OUT", "w" , stdout ); 
     int w ; 
