@@ -6,7 +6,7 @@ long long So_ngay_xau (int k, long long n) {
     for ( int i = 1; i <= 7 ; ++i ) {
         int thu = (k + 12) % 7; 
         if (thu == 5) 
-            return (n - i) / 7 + 1 ;
+            return ((n - i) / 7 + 1) ;
         k = (k + 30) % 7;
     }
     return 0 ; 
