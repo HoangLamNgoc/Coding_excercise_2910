@@ -22,7 +22,7 @@ int main() {
     int d; 
     cin >> w ;
     cin >> d >> m; 
-    int songay = So_ngay (m, d) ; 
+    long long songay = So_ngay (m, d) ; 
     int ket_qua = Thu (songay, w) ; 
     cout << ket_qua ; 
     return 0;
