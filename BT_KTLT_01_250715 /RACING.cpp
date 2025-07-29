@@ -22,7 +22,7 @@ int main(){
     double x1 = thoigian (x, t1, v1) ; 
     double x2 = thoigian (x, t2, v2) ; 
     
-    if ( x1 > x2 ) cout << "First" ; 
+    if ( x1 < x2 ) cout << "First" ; 
     else if ( x1 == x2) cout << "Draw" ; 
     else cout << "Second"; 
     return 0;
