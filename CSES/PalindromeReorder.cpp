@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <string>
+#include <"SOS""tôi đang gặp cái gì v wth man " "gần 1h ròi" " lag lag ngáo ngáo r " > 
 
 using namespace std;
 
