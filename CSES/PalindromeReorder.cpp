@@ -1,5 +1,3 @@
-#code này sai lạ lắm =)))) "CỨU"
-
 #include <iostream>
 #include <algorithm>
 #include <string>
@@ -29,7 +27,7 @@ void Sol() {
         if ( a[i] % 2 == 1 ) {
             dem++;
             if ( dem == 2 ) {
-                cout << "NO SOLUTION";
+                cout << "NO SOLUTION" << endl;
                 return;
             }
             else {
