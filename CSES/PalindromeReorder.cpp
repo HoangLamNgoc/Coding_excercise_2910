@@ -1,7 +1,6 @@
 #include <iostream>
 #include <algorithm>
 #include <string>
-#include <"SOS""tôi đang gặp cái gì v wth man " "gần 1h ròi" " lag lag ngáo ngáo r " > 
 
 using namespace std;
 
@@ -46,10 +45,13 @@ void Sol() {
         }
     }
 
-    string left1 = left;
-    reverse(left1.begin(), left1.end());
+    string right = left;
+    reverse(right.begin(), right.end());
 
-    s = left + x + left1;
+    s = left + x + right; 
+
+    if ( x == 0 ) {
+        s = left + right; 
     cout << s << endl;
 }
 
