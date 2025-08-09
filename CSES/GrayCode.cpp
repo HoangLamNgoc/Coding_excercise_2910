@@ -13,15 +13,15 @@ void Sol(vector<string>& v, int num) {
         return;
     }
 
-    vector<string> vec = v;
-    reverse(vec.begin(),vec.end());
+    vector<string> v_copy = v;
+    reverse(v_copy.begin(),v_copy.end());
 
     vector <string> new_v;
 
     for ( const string& s : v)
         new_v.push_back(string ("0") + s);
 
-    for ( const string& s : vec)
+    for ( const string& s : v_copy)
         new_v.push_back(string("1") + s);
 
     Sol (new_v, num - 1);
