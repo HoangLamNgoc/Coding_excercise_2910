@@ -30,8 +30,8 @@ int main () {
     freopen ("CANARIUM.OUT", "w", stdout);
     
     long long k; 
-    cin >> k; 
-    
-    Sol (k);
+    while ( cin >> k ) {
+        Sol(k);
+    }
     return 0; 
 }
