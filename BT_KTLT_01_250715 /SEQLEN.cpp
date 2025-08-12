@@ -21,9 +21,11 @@ int main() {
     
     dem /= 10; 
     long long cnt = 0; 
+    long long i = 1; 
     
-    for ( long long digit = 1, i = 1; digit < cntdigit; i *= 10 , ++digit) {
+    for ( long long digit = 1; digit < cntdigit; ++digit) {
             cnt += 9 * i * digit; 
+            i *= 10; 
     }
     
     cnt += ( n - dem + 1 ) * cntdigit; 
