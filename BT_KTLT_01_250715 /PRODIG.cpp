@@ -1,30 +1,41 @@
 #include <iostream>
+#include <vector> 
+#include <algorithm>
+
 using namespace std;
 
 int main() { 
+    freopen ("PRODIG.INP", "r", stdin); 
+    freopen ("PRODIG.OUT", "w", stdout); 
+    
     long long n; 
     cin >> n; 
     
-    for (long long m = 1; m <= n; ++m) { 
-        long long copy_n = n;
-        long long tmp = m; 
-        bool kiem = true;
+    long long d = 9; 
+    vector<int> s; 
+    
+    if ( n == 0 ) cout << 10; 
+    
+    else if ( n <= 9 ) cout << n; 
+    
+    else {
+        while ( n > 1 && d > 1) {
+            if ( n % d == 0 ) { 
+                n /= d; 
+                s.push_back(d); 
+            }
         
-        while (tmp > 0) { 
-            long long digit = tmp % 10; 
-            
-            if (digit == 0 || copy_n % digit != 0) { 
-                kiem = false; 
-                break; 
-            } 
-            copy_n /= digit; 
-            tmp /= 10; 
+            else 
+                d--; 
         }
-        
-        if (kiem && copy_n == 1 && m != n) { 
-            cout << m; 
-            break; 
+    
+        if ( n != 1 ) cout << -1 ; 
+        else {
+            sort(s.begin(), s.end()); 
+            for ( int a : s ) 
+                cout << a; 
         }
     }
+    
     return 0; 
 }
