@@ -4,7 +4,7 @@ using namespace std;
 
 long long fold(long long i, long long j) { 
     long long cnt = 0; 
-    bool flag = true
+    bool flag = true;
     
     if ( j > i ) flag = false; 
     
