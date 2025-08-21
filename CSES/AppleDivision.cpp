@@ -26,4 +26,5 @@ int main() {
 	}
 	Sol (0,0,total); 
 	cout << minval << endl; 
+	return 0;
 }
