@@ -8,7 +8,7 @@ int a[25];
 
 void Sol(int i, long long sum, long long total) {
 	if ( i == n ) {
-		int diff = (long long)abs(2 * sum - total ); 
+		long long diff = abs(2 * sum - total ); 
 		minval = min(diff, minval); 
 		return; 
 	}
