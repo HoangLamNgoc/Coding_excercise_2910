@@ -4,7 +4,7 @@
 using namespace std; 
 long long minval = 1e9;
 int n; 
-int a[25]; 
+long long a[25]; 
 
 void Sol(int i, long long sum, long long total) {
 	if ( i == n ) {
