@@ -13,8 +13,8 @@ void Sol(int i, long long sum, long long total) {
 		return; 
 	}
 		
-	Sol(i + 1, sum);
-	Sol ( i + 1; sum + a[i]); 
+	Sol(i + 1, sum, total);
+	Sol ( i + 1; sum + a[i], total); 
 }
 
 int main() {
