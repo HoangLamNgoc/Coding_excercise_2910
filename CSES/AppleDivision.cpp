@@ -48,10 +48,10 @@ int main() {
     }
 
     long long dif = 1e9;
-    for ( int mask = 0; mask < ( 1 << n ) ; ++mask) {
+    for ( int i = 0; i < ( 1 << n ) ; ++i) {
         long long sum = 0;
         for ( int j = 0; j < n; ++j) {
-            if ( mask & ( 1 << j )) {
+            if ( i & ( 1 << j )) {
                 sum += a[j];
                 dif = min( dif,abs(total - 2 * sum));
             }
