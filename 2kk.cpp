@@ -1,70 +1,44 @@
-// cứu lngoc voiiiiiiiiiiiiiiiiiiiiiiiiiii
 #include <iostream>
 #include <cmath>
-#include <algorithm>
 
 using namespace std;
 
-bool ok = false;
-void Sol(int n) {
-    if ( n == 0 ) return;
-    if (n % 2 == 1){
-        cout << 1 << endl;
-        cout.flush();
-
-        int res;
-        cin >> res;
-
-        n -= res;
-        n -= 1;
-        Sol(n);
-
+long long Sol(int n) {
+    long long res = 1;
+    while ( n % 2 == 0 ) {
+        n /= 2;
+        res *= 2;
     }
-
-    else {
-        int num = n;
-        int i = 2;
-        if (__builtin_popcount(n) == 1 ) {
-                cout << 0 << endl;
-                cout.flush();
-
-                int res;
-                cin >> res;
-
-                n -= res;
-        }
-
-        else {
-            if ( num == 1 && !ok ) {
-                cout << 0 << endl;
-                cout.flush();
-
-                int res;
-                cin >> res;
-
-                n -= res;
-                ok = true;
-                Sol(n);
-            }
-            else {
-                cout << i << endl;
-                cout.flush();
-
-                int res;
-                cin >> res;
-
-                n -= i;
-                n -= res;
-                Sol(n);
-            }
-        }
-    }
+    return res;
 }
 
 int main() {
     int n;
     cin >> n;
 
-    Sol(n);
+
+    int log1 = (int)log2(n);
+
+    if ( log1 == log2(n)) {
+        cout << 0 << endl;
+        cout.flush();
+    }
+
+    else {
+        long long res = Sol(n);
+        cout << res << endl;
+        n -= res;
+    }
+
+    while ( n > 0 ) {
+        int c;
+        cin >> c;
+        n -= c;
+
+        long long res = Sol(n);
+        cout << res << endl;
+        cout.flush();
+        n -= res;
+    }
     return 0;
 }
