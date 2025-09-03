@@ -40,12 +40,6 @@ void moves(int x, int y ) {
 
 int main() {
     cin >> n;
-    for ( int i = 0; i < n; ++i ) {
-        for ( int j = 0; j < n; ++j) {
-            b[i][j] = true;
-        }
-    }
-
     moves(0,0);
 
     for ( int i = 0; i < n; ++i ) {
