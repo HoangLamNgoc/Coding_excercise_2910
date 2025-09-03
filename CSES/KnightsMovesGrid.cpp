@@ -16,7 +16,8 @@ void moves(int x, int y ) {
     b[x][y] = false;
 
     while (!q.empty()) {
-        pair <int,int> v = q.front(); q.pop();
+        pair <int,int> v = q.front();
+        q.pop();
         int i = v.first;
         int j = v.second;
 
