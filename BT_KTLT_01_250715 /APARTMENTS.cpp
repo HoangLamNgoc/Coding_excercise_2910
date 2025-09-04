@@ -16,5 +16,20 @@ int main() {
 
 	sort(a, a + n); 
 	sort(b, b + m);
+	int ans = 0; 
+	int i = 0; 
+	int j = 0;
 
+	while ( i < n && j < m ) {
+		if ( abs(a[i] - b[j]) <= k ) {
+			ans++; 
+			i++;
+			++j;
+		}
+		else if ( b[j] > a[i] + k ) i++;
+		else ++j; 
+	}
+	cout << ans << endl; 
+	return 0;
+}
 	
