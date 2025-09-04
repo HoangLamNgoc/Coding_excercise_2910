@@ -23,9 +23,9 @@ int main() {
         if(a[i] + a[j] <= tonnage) {
             ++i;
             --j; 
-            ++ans; 
         }
-        else --j; 
+        else --j;
+        ++ans;
     }
 
     if (!a.empty()) ans += a.size(); 
