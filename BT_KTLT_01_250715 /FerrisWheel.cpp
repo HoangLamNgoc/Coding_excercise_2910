@@ -17,7 +17,7 @@ int main() {
     sort(a.begin(), a.end());
 
     if ( n % 2 == 0 ) {
-        a.pop_back(a.begin() + n - 1); 
+        a.erase(a.begin() + n - 1); 
         ++ans; 
     }
 
@@ -26,8 +26,8 @@ int main() {
 
     while ( i <= j ) {
         if(a[i] + a[j] <= tonnage) {
-            a.pop_back(a.begin() + i - 1); 
-            a.pop_back(a.begin() + j - 1); 
+            a.erase(a.begin() + i - 1); 
+            a.erase(a.begin() + j - 1); 
             ++i;
             --j; 
             ++ans; 
