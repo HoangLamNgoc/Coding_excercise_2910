@@ -16,18 +16,11 @@ int main() {
     for ( int i = 0; i < n; ++i ) cin >> a[i]; 
     sort(a.begin(), a.end());
 
-    if ( n % 2 == 0 ) {
-        a.erase(a.begin() + n - 1); 
-        ++ans; 
-    }
-
     int i = 0; 
     int j = n - 1; 
 
     while ( i <= j ) {
         if(a[i] + a[j] <= tonnage) {
-            a.erase(a.begin() + i - 1); 
-            a.erase(a.begin() + j - 1); 
             ++i;
             --j; 
             ++ans; 
