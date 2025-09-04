@@ -4,6 +4,9 @@
 using namespace std; 
 
 int main() {
+	freopen("APARMENTS.INP",r, stdin);
+	freopen("APARMENTS.OUT",W, stdout); 
+	
   	int n, m; 
   	cin >> n >> m; 
 
@@ -22,11 +25,11 @@ int main() {
 
 	while ( i < n && j < m ) {
 		if ( abs(a[i] - b[j]) <= k ) {
-			ans++; 
-			i++;
+			++ans; 
+			++i;
 			++j;
 		}
-		else if ( b[j] > a[i] + k ) i++;
+		else if ( b[j] > a[i] + k ) ++i;
 		else ++j; 
 	}
 	cout << ans << endl; 
