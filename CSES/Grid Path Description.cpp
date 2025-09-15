@@ -22,6 +22,8 @@ void dfs(int x, int y, int i) {
               return;
         }
     }
+
+    if( i == 48) return;
     
     visited[x][y] = true; 
     if(x >= 1 && y >= 1 && visited[x - 1][y] && !visited[x][y - 1] && !visited[x][y + 1] && !visited[x + 1][y]) {
@@ -39,7 +41,10 @@ void dfs(int x, int y, int i) {
         return;
     }
 
-
+    if ((x >= 1 && y >= 1 && isEmpty(x - 1, y) && isEmpty(x, y - 1) && !isEmpty(x - 1, y - 1)) || (x >= 1 && y <= N - 2 && isEmpty(x - 1, y) && isEmpty(x, y + 1) && !isEmpty(x - 1, y + 1)) || (x <= N - 2 && y >= 1 && isEmpty(x + 1, y) && isEmpty(x, y - 1) && !isEmpty(x + 1, y - 1)) || (x <= N - 2 && y <= N - 2 && isEmpty(x + 1, y) && isEmpty(x, y + 1) && !isEmpty(x + 1, y + 1))) {
+        visited[x][y] = false;
+        return;
+    }
     for(int  j = 0; j < 4; ++j) {
         if( s[i] != '?' && s[i] != rule[j] )
             continue;
@@ -50,6 +55,7 @@ void dfs(int x, int y, int i) {
             visited[r][c] = false; 
         }
     }
+    visit[x][y] = false; 
 }
 
 
