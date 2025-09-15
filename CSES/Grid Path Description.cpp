@@ -34,8 +34,8 @@ void dfs(int x, int y, int i) {
     for(int  j = 0; j < 4; ++j) {
         if( s[i] != '?' && s[i] != rule[j] )
             continue;
-        int r = x + rule[j].first; 
-        int c = y + rule[j].second;
+        int r = x + a[j].first; 
+        int c = y + a[j].second;
         if (!visited[r][c]) {
             dfs(r, c, i + 1);
             visited[r][c] = false; 
