@@ -11,7 +11,8 @@ bool long long visited[N][N];
 long long ans; 
 
 bool empty(int x, y) {
-    return !visited[x][y] && 
+    return !visited[x][y] && max(x, y) < N && min(x,y) >= 0; 
+}
     
 void dfs(int x, int y) {
     if ( x == N - 1 && y == 0 ){
