@@ -24,11 +24,20 @@ void dfs(int x, int y, int i) {
     }
     
     visited[x][y] = true; 
-    if(x >= 1 && y >= 1 && visited[x - 1][y] && !visited[x][y - 1] && !visited[x][y + 1] && !visited[x + 1][y]) return;  
+    if(x >= 1 && y >= 1 && visited[x - 1][y] && !visited[x][y - 1] && !visited[x][y + 1] && !visited[x + 1][y]) {
+        visited[x][y] = false;
+        return;
+    }
 
-    if(x >= 1 && y >= 1 && visited[x][y - 1] && visited[x][y + 1] && !visited[x - 1][y] && !visited[x + 1][y]) return; 
+    if(x >= 1 && y >= 1 && visited[x][y - 1] && visited[x][y + 1] && !visited[x - 1][y] && !visited[x + 1][y])  {
+        visited[x][y] = false;
+        return;
+    }
 
-    if(x >= 1 && y >= 1 && visited[x - 1][y] && visited[x + 1][y] && !visited[x][y - 1] && !visited[x][y + 1]) return; 
+    if(x >= 1 && y >= 1 && visited[x - 1][y] && visited[x + 1][y] && !visited[x][y - 1] && !visited[x][y + 1]) {
+        visited[x][y] = false;
+        return;
+    }
 
 
     for(int  j = 0; j < 4; ++j) {
