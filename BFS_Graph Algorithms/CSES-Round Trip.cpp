@@ -6,38 +6,34 @@
 
 using namespace std;
 const int N = 1e6;  
-int end1;
+int end1, start1;
 vector<int> g[N + 6];
 int par[N + 6]; 
 bool visit[N + 6]; 
 bool found = false;
-int d[N + 6]
+
 void bfs (int s) {
     visit[s] = true; 
     par[s] = -1;
 
-    queue<pair<int, int>> q; 
-    q.push({s, -1});
+    queue<int> q; 
+    q.push(s);
 
     while ( !q.empty()) {
-        auto u = q.front();
+        auto r1 = q.front();
         q.pop(); 
-        int r1 = u.first; 
-        int c1 = u.second; 
 
         for ( auto v : g[r1]) {
             if ( visit[v] == false) {
-                q.push({v, r1}); 
+                q.push(v); 
                 visit[v] = true; 
                 par[v] = r1; 
-                d[v] = d[r1] + 1; 
             } 
             else {
-                if ( v != c1 ) {
-                    par[v] = r1; 
+                if ( v != par[r1]) {
                     found = true; 
-                    end1 = v; 
-                    d[v] = d[r1] + 1; 
+                    end1 = v;
+                    start1 = r1;
                     return; 
                 }
             }
@@ -58,6 +54,7 @@ int main() {
     }
                             
     for (int i = 1; i <= n; ++i ) {
+        if (found) break;
         if ( visit[i] == false ) bfs(i); 
     }
     if ( found == false) 
