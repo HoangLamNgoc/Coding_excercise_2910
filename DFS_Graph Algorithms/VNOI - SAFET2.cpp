@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <stack>
 #include <cstring>
+#include <set>
 
 using namespace std; 
 const int maxn = 1e5 + 6; 
@@ -23,20 +24,18 @@ void dfs(int u) {
             dfs(v); 
             low[u] = min(low[v], low[u]); 
             if (low[v] >= num[u]) {
-                int dem = 0, v1, v2; 
+                int v1, v2; 
+                set<int> ver; 
                 ++bcc;
                 do {
                     v1 = st.top().first;
                     v2 = st.top().second;  
                     st.pop();
 
-                    if(c[v1] != bcc) dem++;
-                    if (c[v2] != bcc) dem++; 
-
-                    c[v1] = bcc; 
-                    c[v2] = bcc; 
+                    ver.insert(v1); 
+                    ver.insert(v2);
                 } while (make_pair(v1, v2) != make_pair(v, u) && make_pair(v1, v2) != make_pair(u, v)); 
-                best = max(dem, best); 
+                best = max(best, (int)ver.size()); 
             }
         }
         else {
