@@ -25,7 +25,6 @@ void input() {
     }
     fill_n(low, maxn, 0);
     fill_n(num, maxn, 0);
-    fill_n(par, maxn, -1);
     fill_n(deleted, maxn, false);
     fill_n(scc_id, maxn, false);
     fill_n(root, maxn, 0);
