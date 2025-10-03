@@ -3,13 +3,14 @@
 #include <algorithm>
 #include <stack>
 #include <cstring>
-#include <set>
 
 using namespace std; 
 const int maxn = 1e5 + 6; 
 int low[maxn], num[maxn]; 
 vector<int> g[maxn]; 
 int tin = 0, best = 1; 
+int bcc = 0;
+int ncp[maxn]; 
 stack <pair<int, int>> st;
 
 void dfs(int u, int par) { 
@@ -21,20 +22,24 @@ void dfs(int u, int par) {
             dfs(v, u); 
             low[u] = min(low[v], low[u]); 
             if (low[v] >= num[u]) {
-                int v1, v2; 
-                set<int> ver;
+                int v1, v2, dem = 0; 
+                ++bcc;
                 do {
                     v1 = st.top().first;
                     v2 = st.top().second;  
                     st.pop();
-
-                    ver.insert(v1); 
-                    ver.insert(v2);
+                            
+                    if(ncp[v1] != bcc) ++dem; 
+                    if(ncp[v2] != bcc) ++dem;
+            
+                    ncp[v1] = bcc; 
+                    ncp[v2] = bcc; 
+                    
                 } while (make_pair(v1, v2) != make_pair(v, u) && make_pair(v1, v2) != make_pair(u, v)); 
-                best = max(best, (int)ver.size()); 
+                best = max(best, dem); 
             }
         }
-        else {
+        else if (num[v] < num[u]) {
             low[u] = min(low[u], num[v]);
             st.push({u, v}); 
         } 
@@ -54,14 +59,29 @@ int main() {
 
     memset(low, 0, sizeof(low)); 
     memset(num, 0, sizeof(num));  
-    memset(c, -1, sizeof(c));
+    memset(ncp, -1, sizeof(ncp));
 
     for (int i = 1; i <= n; ++i) {
         if (!num[i]) {
-            st.push({i, -1});   
             dfs(i, -1);
         } 
     }
+     if (!st.empty()) {
+        int dem = 0,  v1, v2;
+        bcc++; 
+        while (!st.empty()) {
+            v1 = st.top().first;
+            v2 = st.top().second; 
+            
+            if(ncp[v1] != bcc) ++dem; 
+            if(ncp[v2] != bcc) ++dem;
+            
+            ncp[v1] = bcc; 
+            ncp[v2] = bcc; 
+        }
+        best = max(best, dem); 
+    }
+    
     cout << best << endl; 
     return 0; 
 }
