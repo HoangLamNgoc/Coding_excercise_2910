@@ -9,7 +9,7 @@ struct me {
 };
 
 bool cmp (const me& x, const me& y) {
-    return (x.b < y.b) || (x.b == y.b && x.a > y.a); 
+    return (x.b < y.b) || (x.b == y.b && x.a >= y.a); 
 }
 
 int main() {
@@ -21,10 +21,12 @@ int main() {
     for(int i = 1; i <= n; ++i) {
         cin >> g[i].a >> g[i].b;  
     }
-    sort(g.begin(), g.end(), cmp); 
-    for(int i = 1; i < n ; ++i) {
-        if (g[i].b <= g[i + 1].a) {
+    sort(g.begin(), g.end(), cmp);
+    int last = g[1].b;  
+    for(int i = 2; i <= n ; ++i) {
+        if (g[i].a >= last) {
             cnt++; 
+            last = g[i].b; 
         }
     }
 
