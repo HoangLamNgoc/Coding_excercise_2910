@@ -7,26 +7,22 @@
 
 using namespace std; 
 const int maxn = 1e5 + 6; 
-int low[maxn], num[maxn], par[maxn]; 
+int low[maxn], num[maxn]; 
 vector<int> g[maxn]; 
 int tin = 0, best = 1; 
-int bcc = 0;
-int c[maxn]; 
 stack <pair<int, int>> st;
 
-void dfs(int u) { 
+void dfs(int u, int par) { 
     low[u] = num[u] = ++tin; 
     for (int v : g[u]) {
-        if ( v == par[u]) continue;
+        if ( v == par) continue;
         if (!num[v]) {
-            par[v] = u;
             st.push({u, v});  
-            dfs(v); 
+            dfs(v, u); 
             low[u] = min(low[v], low[u]); 
             if (low[v] >= num[u]) {
                 int v1, v2; 
-                set<int> ver; 
-                ++bcc;
+                set<int> ver;
                 do {
                     v1 = st.top().first;
                     v2 = st.top().second;  
@@ -57,14 +53,13 @@ int main() {
     }
 
     memset(low, 0, sizeof(low)); 
-    memset(num, 0, sizeof(num));
-    memset(par, -1, sizeof(par));  
+    memset(num, 0, sizeof(num));  
     memset(c, -1, sizeof(c));
 
     for (int i = 1; i <= n; ++i) {
         if (!num[i]) {
             st.push({i, -1});   
-            dfs(i);
+            dfs(i, -1);
         } 
     }
     cout << best << endl; 
