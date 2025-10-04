@@ -9,7 +9,7 @@ struct me {
 };
 
 bool cmp (const me& x, const me& y) {
-    return (x.b < y.b) || (x.b == y.b && x.a >= y.a); 
+    return (x.b < y.b); 
 }
 
 int main() {
