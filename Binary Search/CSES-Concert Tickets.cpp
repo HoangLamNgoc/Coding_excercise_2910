@@ -17,9 +17,7 @@ int main() {
   for(int i = 0; i < n; ++i ) cin >> a[i]; 
   for(int i = 0; i < m1; ++i ) cin >> b[i]; 
 
-  sort(a, a + n); 
-  for (int& i : a) cout << i << " "; 
-
+  sort(a, a + n);
   for(int m = 0; m < m1; ++m) {
       int it = upper_bound(a , a + n,b[m]) - a;
       it--;
