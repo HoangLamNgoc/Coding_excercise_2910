@@ -19,3 +19,5 @@ int main() {
     cout << r << endl;
     return 0;
 }
+
+//https://www.notion.so/Collecting-Numbers-2858b4d60bef80939783d97d951d727b?source=copy_link
