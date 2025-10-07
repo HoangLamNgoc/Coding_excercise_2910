@@ -1,19 +1,21 @@
 #include <iostream>
 #include <algorithm>
 
+using namespace std;
+
 int main() {
-    int n; 
-    cin >> n; 
+    int n;
+    cin >> n;
 
-    int pos[n + 5]; 
-    for(int i = 1; i <= n; ++i ) {
-        int x; cin >> x; 
-        pos[x] = i; 
+    int pos[n + 5];
+    for(int i = 0; i < n; ++i ) {
+        int x; cin >> x;
+        pos[x] = i;
     }
-    int r = 0; 
-    for (int i = 2; i < n; ++i) 
-        if (pos[i] < pos[i - 1]) r++; 
+    int r = 1;
+    for (int i = 2; i <= n; ++i)
+        if (pos[i] < pos[i - 1]) r++;
 
-    cout << r << endl; 
-    return 0; 
+    cout << r << endl;
+    return 0;
 }
