@@ -4,17 +4,16 @@
 using namespace std;
 
 int main() {
-    int n; cin >> n; 
-    int minv = 0, maxv = 0; 
-    long long sum = 0; 
+    int n; cin >> n;
+    long long minv = 0 , maxv = -1e15;
+    long long sum = 0;
 
     for(int i = 1; i <= n; ++i){
-        int d; cin >> d; 
-        sum += d; 
-        maxv = max(maxv, (int)sum - minv); 
-        minv = min(sum,(long long)minv); 
+        int d; cin >> d;
+        sum += d;
+        maxv = max(maxv,sum - minv);
+        minv = min(sum,minv);
     }
-
-    cout << maxv << endl; 
-    return 0; 
+    cout << maxv << endl;
+    return 0;
 }
