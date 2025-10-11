@@ -38,6 +38,8 @@ void dfs(int u) {
 }
 
 int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
     input();
 
     for(int i = 1; i <= n; ++i) {
@@ -52,7 +54,5 @@ int main() {
 
     reverse(tp.begin(), tp.end());
     int cnt = 0; 
-    for(int x : tp) a[x] = ++cnt; 
-    for(int i = 1; i <= n; ++i) cout << a[i] << ' '; 
-    return 0; 
+    for(int x : tp) cout << x << " "; 
 }
