@@ -22,7 +22,7 @@ bool vis[N];
 long long valdag[N], dp[N];  
 vector<int> dag[N];  
 
-inline bool check(int r, int c) {
+bool check(int r, int c) {
     return (r >= 1 && r <= n && c >= 1 && c <= m && grid[r][c] != '#');
 }
 
