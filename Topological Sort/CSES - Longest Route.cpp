@@ -33,10 +33,7 @@ void dfs(int u) {
 
 int main() {
     input(); 
-
-    for(int i = 1; i <= n; ++i) {
-        if(!vis[i]) dfs(i); 
-    }
+    dfs(1); 
 
     int dp[maxn], trace[maxn];
     fill_n(trace, maxn, -1);  
