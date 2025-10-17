@@ -5,18 +5,16 @@
 #include <iomanip>
 
 using namespace std;
-const int N = 1e5 + 5;
-const long long MOD = 1e9;
-
+const int N = 1e6 + 5;
 vector<int> g[N], tp;
 int n, m;
 int indeg[N];
 queue<int> q;
-string a; 
+string a;
 
 void input() {
     cin >> n >> m;
-    cin >> a; 
+    cin >> a;
     while (m--) {
         int u, v;
         cin >> u >> v;
@@ -42,7 +40,7 @@ int main() {
     input();
     bfs();
 
-    long long dp[n + 1][26] = {};
+    vector<vector<long long>> dp(n + 1, vector<long long>(26, 0));
 
     if ((int)tp.size() < n ) {
         cout << -1 << endl;
@@ -52,7 +50,7 @@ int main() {
     long long ans = 0;
     for(int u : tp) {
         int idx = a[u - 1]-'a';
-        dp[u][idx]++;  
+        dp[u][idx]++;
         ans = max(ans, dp[u][idx]);
         for(int v : g[u]) {
             for(int c = 0; c < 26; ++c) {
