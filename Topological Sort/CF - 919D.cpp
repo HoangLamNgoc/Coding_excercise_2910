@@ -40,7 +40,7 @@ int main() {
     input();
     bfs();
 
-    vector<vector<long long>> dp(n + 1, vector<long long>(26, 0));
+    long long dp[n + 1][26]; 
 
     if ((int)tp.size() < n ) {
         cout << -1 << endl;
