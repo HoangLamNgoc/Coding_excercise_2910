@@ -5,8 +5,8 @@ using namespace std;
 
 struct edge {
     int u, v, w;
-    edge() {}
-    edge(int a, int b, int c) : u(a), v(b), w(c) {}
+    edge() {};
+    edge(int a, int b, int c) : u(a), v(b), w(c) {};
 };
 vector<edge> g;
 
