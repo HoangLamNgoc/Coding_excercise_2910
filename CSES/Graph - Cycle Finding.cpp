@@ -5,7 +5,7 @@
 using namespace std; 
 const int N = (int)25e2 + 5; 
 const int M = (int)5e3 + 5; 
-const int oo = (int)2e9 + 5; 
+const long long oo = (long long)2e16 + 1LL * 5; 
 struct edge {
     int u, v, w; 
 
@@ -13,21 +13,20 @@ struct edge {
     edge(int a, int b, int c) : u(a), v(b), w(c) {}; 
 }; 
 
-vector<edge> e(M);
+vector<edge> e;
 vector<int> path; 
 long long d[N]; 
 int trace[N]; 
 int n, m; 
 
-void bellmanford(int s) {
-    fill_n(d, N, oo); 
+void bellmanford() {
+    fill_n(d, N, 0); 
     fill_n(trace, N, -1); 
-
-    d[s] = 0; 
+ 
     for(int i = 1; i < n; ++i) {
         for(edge E : e) {
             int u = E.u, v = E.v, w = E.w; 
-            if (d[v] > d[u] + w && d[u] != oo) {
+            if (d[v] > d[u] + w) {
                 d[v] = d[u] + w; 
                 trace[v] = u; 
             }
@@ -40,16 +39,16 @@ bool NegCy() {
 
     for(edge E : e) {
         int u = E.u, v = E.v, w = E.w; 
-        if (d[v] > d[u] + w && d[u] != oo) {
+        if (d[v] > d[u] + w) {
             trace[v] = u; 
-            negst = u; 
-            break; 
+            negst = v; 
+            break;
         }
     }
 
     if (negst == -1) return 0; 
+    
     int u = negst;
-
     for(int i = 0; i < n; ++i) u = trace[u]; 
 
     path.emplace_back(u); 
@@ -68,7 +67,7 @@ signed main() {
         cin >> u >> v >> w; 
         e.emplace_back(edge(u, v, w)); 
     }
-    bellmanford(1); 
+    bellmanford(); 
     if (NegCy()) {
         cout << "YES" << '\n'; 
         for(const int& i : path) cout << i << ' '; 
