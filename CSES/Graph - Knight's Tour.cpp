@@ -1,64 +1,77 @@
 #include <iostream>
 #include <algorithm>
-#include <vector> 
+#include <vector>
 
 using namespace std;
+int n = 8;
+int a[8][8];
 
-const int N = 8;
-int board[N][N];
-int dx[8] = {2,1,-1,-2,-2,-1,1,2};
-int dy[8] = {1,2,2,1,-1,-2,-2,-1};
-
-inline bool inside(int x,int y){
-    return x >= 0 && y >= 0 && x < N && y < N;
+inline bool insight(int x, int y) {
+    return (x < n && x >= 0 && y < n && y >= 0);
 }
 
-int getDegree(int x,int y){
-    int cnt = 0;
-    for(int i = 0; i < 8; ++i){
-        int nx = x + dx[i], ny = y + dy[i];
-        if(inside(nx,ny) && board[ny][nx] == -1) cnt++;
+inline bool emp(int x, int y) {
+    return insight(x, y) && a[x][y] == -1;
+}
+
+static int dx[8] = {1, 1, 2, 2, -1, -1, -2, -2};
+static int dy[8] = {2, -2, 1, -1, 2, -2, 1, -1};
+
+int getdeg(int x, int y) {
+    int nx, ny;
+    int count = 0;
+    for(int i = 0; i < 8; ++i) {
+        nx = x + dx[i];
+        ny = y + dy[i];
+
+        if(emp(nx, ny)) ++count;
     }
-    return cnt;
+    return count;
 }
 
-bool solve(int x,int y,int step){
-    board[y][x] = step;
-    if(step == N * N - 1) return true;
+bool sol(int x, int y, int st) {
+    a[x][y] = st;
+    if (st == n * n - 1) return true;
 
     vector<pair<int,pair<int,int>>> moves;
-    for(int i = 0;i < 8; i++){
-        int nx = x + dx[i], ny = y + dy[i];
-        if(inside(nx,ny) && board[ny][nx] == -1)
-            moves.push_back({getDegree(nx,ny), {nx,ny}});
+    for(int i = 0; i < 8; ++i) {
+        int nx = x + dx[i];
+        int ny = y + dy[i];
+
+        if (emp(nx, ny))
+            moves.push_back({getdeg(nx, ny), {nx, ny}});
     }
 
     sort(moves.begin(), moves.end());
 
-    for(auto &mv:moves){
-        int nx = mv.second.first, ny = mv.second.second;
-        if(solve(nx,ny,step+1)) return true;
+    for(pair<int,pair<int,int>> v : moves) {
+        int nx = v.second.first;
+        int ny = v.second.second;
+
+        if(sol(nx, ny, st + 1)) return true;
     }
 
-    board[y][x]=-1;
+    a[x][y] = -1;
     return false;
 }
 
-int main(){
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    fill_n(board, 64, -1);
-
+int main() {
     int sx, sy;
     cin >> sx >> sy;
-    sx--; sy--;
 
-    if(solve(sx,sy,0)){
-        for(int i = 0 ;i < N; i++){
-            for(int j = 0;j < N; j++)
-                cout << board[i][j] + 1 << " ";
+    --sx, --sy;
+    for(int i = 0; i < 8; ++i)
+        for(int j = 0; j < 8; ++j)
+            a[i][j] = -1;
+
+    if (sol(sy, sx, 0)) {
+        for(int i = 0; i < 8; ++i) {
+            for(int j = 0; j < 8; ++j) {
+                cout << a[i][j] + 1 << ' ';
+            }
             cout << '\n';
         }
-    } else cout << "NO SOLUTION\n";
+    }
+    else cout << "IMPOSSIBLE\n";
+    return 0;
 }
