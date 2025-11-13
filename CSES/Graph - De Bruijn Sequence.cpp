@@ -36,7 +36,7 @@ int main() {
         }
         else {
             todo.pop(); 
-            path.push(u & 1); 
+            path.push_back(u & 1); 
         }
     } 
 
