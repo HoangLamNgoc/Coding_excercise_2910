@@ -1,116 +1,138 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <stack>
 using namespace std;
 
 const int N = 2e5 + 5;
 const int LOG = 20;
 
-int n, q;
-int to[N], id[N], low[N], on[N], scc[N], pos[N], rep[N];
-int tmr = 0, cnt = 0;
-stack<int> st;
+int g[N];
+int low[N], num[N];
+int scc = 1, tin = 0;
 vector<vector<int>> comp;
-vector<int> dag[N];
-int up[N][LOG + 1], h[N];
+int dist_scc[N];        
+vector<int> length;     
+int id[N];    
+stack<int> st;
+bool vis[N], on_stack[N];
+int up[N][LOG];
+int root[N];          
+int dist[N];           
+bool in_cycle[N];     
+int n, q;
+
 
 void tarjan(int u) {
-    id[u] = low[u] = ++tmr;
-    st.push(u); on[u] = 1;
+    vis[u] = true;
+    on_stack[u] = true;
+    st.push(u);
+    low[u] = num[u] = ++tin;
 
-    int v = to[u];
-    if (!id[v]) {
+    int v = g[u];
+    if (!vis[v]) {
         tarjan(v);
         low[u] = min(low[u], low[v]);
-    }
-    else if (on[v]) {
-        low[u] = min(low[u], id[v]);
-    }
+    } else if (on_stack[v])
+        low[u] = min(low[u], num[v]);
 
-    if (low[u] == id[u]) {
-        vector<int> cur;
+    if (low[u] == num[u]) {
+        vector<int> order;
         while (true) {
-            int x = st.top(); st.pop();
-            on[x] = 0;
-            scc[x] = cnt;
-            cur.push_back(x);
-            if (x == u) break;
+            v = st.top(); st.pop();
+            on_stack[v] = false;
+            id[v] = scc;
+            order.push_back(v);
+            if (v == u) break;
         }
-        reverse(cur.begin(), cur.end());
 
-        for (int i = 0; i < (int)cur.size(); i++) pos[cur[i]] = i;
+        int dem = order.size();
+        length.push_back(dem);
 
-        comp.push_back(cur);
+        for (int i = 0; i < dem; ++i) {
+            int node = order[i];
+            dist_scc[node] = i;     
+            in_cycle[node] = true;
+            root[node] = node;       
+            dist[node] = 0;          
+        }
 
-        int r = cur[0];
-        for (int x : cur) if (scc[to[x]] != cnt) { r = x; break; }
-        rep[cnt] = r;
-
-        cnt++;
+        comp.push_back(order);
+        scc++;
     }
 }
 
-void buildDAG() {
-    for (int u = 1; u <= n; u++) {
-        int v = to[u];
-        if (scc[u] != scc[v]) dag[scc[u]].push_back(scc[v]);
+void build() {
+    for (int u = 1; u <= n; ++u) {
+        up[u][0] = g[u];
+    }
+
+    for (int k = 1; k < LOG; ++k) {
+        for (int u = 1; u <= n; ++u) {
+            up[u][k] = up[up[u][k - 1]][k - 1];
+        }
+    }
+
+
+    for (int u = 1; u <= n; ++u) {
+        if (!in_cycle[u]) {
+            int cur = u, d = 0;
+            while (!in_cycle[cur]) {
+                cur = g[cur];
+                d++;
+            }
+            root[u] = cur;
+            dist[u] = d;
+        }
     }
 }
 
-void dfs(int u) {
-    for (int v : dag[u]) {
-        if (v == up[u][0]) continue;
 
-        up[v][0] = u;
-        h[v] = h[u] + 1;
-
-        for (int j = 1; j <= LOG; j++)
-            up[v][j] = up[up[v][j - 1]][j - 1];
-
-        dfs(v);
+int jump(int u, int steps) {
+    for (int k = 0; k < LOG; ++k) {
+        if (steps & (1 << k))
+            u = up[u][k];
     }
-}
-
-int jump(int u, int k) {
-    for (int j = 1; (1 << j) <= k; j++)
-        if (k & (1 << j)) u = up[u][j];
     return u;
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+    ios_base::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
 
     cin >> n >> q;
-    for (int i = 1; i <= n; i++) cin >> to[i];
+    for (int i = 1; i <= n; ++i) cin >> g[i];
 
-    for (int i = 1; i <= n; i++) if (!id[i]) tarjan(i);
+    for (int i = 1; i <= n; ++i) {
+        if (!num[i]) tarjan(i);
+    }
 
-    buildDAG();
-
-    for (int i = 0; i < cnt; i++)
-        if (h[i] == 0) dfs(i);
+    build();
 
     while (q--) {
-        int a, b;
-        cin >> a >> b;
+        int u, v;
+        cin >> u >> v;
 
-        int sa = scc[a], sb = scc[b];
+        if (id[u] == id[v] && in_cycle[u] && in_cycle[v]) {
+            int len = length[id[u] - 1];
+            int ans = (dist_scc[v] - dist_scc[u] + len) % len;
+            cout << ans << '\n';
+        }
+        else if (!in_cycle[u] && !in_cycle[v] && root[u] == root[v]) {
+            int steps = dist[v] - dist[u];
+            if (steps < 0) cout << -1 << '\n';
+            else {
+                int reached = jump(u, steps);
+                cout << (reached == v ? steps : -1) << '\n';
+            }
+        }
 
-        if (sa == sb) {
-            int sz = comp[sa].size();
-            int step = (pos[b] - pos[a] + sz) % sz;
-            cout << step << "\n";
+        else if (!in_cycle[u] && in_cycle[v] && root[u] != v && id[root[u]] == id[v]) {
+            int len = length[id[v] - 1];
+            int cycle_dist = (dist_scc[v] - dist_scc[root[u]] + len) % len;
+            cout << dist[u] + cycle_dist << '\n';
         }
         else {
-            int k = h[sb] - h[sa];
-            if (k < 0) { cout << -1 << "\n"; continue; }
-
-            int u = jump(u, k); 
-            if(u != sb) {cout << -1 << '\n'; continue;}
-
-            int stepA = (pos[rep[sa]] - pos[a] + comp[sa].size()) % comp[sa].size();
-            int stepB = (pos[b] - pos[rep[sb]] + comp[sb].size()) % comp[sb].size();
-
-            cout << stepA + k + stepB + 1<< "\n";
+            cout << -1 << '\n';
         }
     }
 }
