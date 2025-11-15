@@ -68,3 +68,24 @@ int main() {
 
     cout << maxval;
 }
+
+/*
+void dfs(int u, int par) {
+    d[u] = 0;
+    int best1 = 0, best2 = 0;
+    for(int v : g[u]) {
+        if(v == par) continue;
+        dfs(v, u);
+        int best = d[v] + 1;
+        d[u] = max(d[u], best);
+
+        if(best > best1) {
+            best2 = best1;
+            best1 = best;
+        } else if(best > best2) {
+            best2 = best;
+        }
+    }
+    diameter = max(diameter, best1 + best2);
+}
+*/
