@@ -17,8 +17,8 @@ void bfs(int src) {
     fill_n(hei, MAX_NODES, oo); 
  
     queue<int> q;    
-    vis[s] = 1; 
-    hei[s] = 0;
+    vis[src] = 1; 
+    hei[src] = 0;
     q.push(src);
  
     while(!q.empty()) {
