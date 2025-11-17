@@ -35,13 +35,12 @@ void bfs(int src) {
         }
     } 
 }
-int cnt[N];
+int cnt[MAX_NODES];
 void dfs(int u, int par = 0) {
-    for(int v : g[u]) {
+    for(int v : adj[u]) {
         if (v == par) continue; 
         dfs(v, u); 
         cnt[u] += cnt[v]; 
-  
     }
 }
  
@@ -69,9 +68,9 @@ int main() {
     ios_base::sync_with_stdio(0); 
     cin.tie(0); cout.tie(0); 
     
-    int n, quer; cin >> n >> quer; 
+    int nodes, quer; cin >> nodes >> quer; 
  
-    for(int i = 2; i <= n; ++i) {
+    for(int i = 2; i <= nodes; ++i) {
         int u, v; 
         cin >> u >> v;
  
@@ -80,12 +79,12 @@ int main() {
     }
     bfs(1); 
     for(int j = 1; j < LOG; ++j) 
-        for(int u = 1; u <= n; ++u) 
+        for(int u = 1; u <= nodes; ++u) 
             up[u][j] = up[up[u][j - 1]][j - 1];
  
-    int visited[n + 1]; 
-    fill_n(cnt, N, 0); 
-    fill_n(visited, n + 1, 0); 
+    int visited[nodes + 1]; 
+    fill_n(cnt, MAX_NODES, 0); 
+    fill_n(visited, nodes + 1, 0); 
     while(quer--) {
         int u, v; 
         cin >> u >> v; 
@@ -98,7 +97,7 @@ int main() {
     }
 
     dfs(1); 
-    for(int i = 1; i <= n; ++i) { 
+    for(int i = 1; i <= nodes; ++i) { 
         cout << cnt[i] + visited[i]<< ' '; 
     }
 }
