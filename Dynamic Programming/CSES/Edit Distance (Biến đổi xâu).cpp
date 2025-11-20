@@ -16,8 +16,8 @@ int main() {
     strb = "-" + strb; 
 
     int L[alen + 1][blen + 1];
-    for(int i = 1; i <= alen; ++i) {
-        for(int j = 1; j <= blen; ++j) {
+    for(int i = 0; i <= alen; ++i) {
+        for(int j = 0; j <= blen; ++j) {
             L[i][j] = 0; 
         }
     }
@@ -25,10 +25,10 @@ int main() {
     for(int j = 1; j <= blen; ++j) L[0][j] = j;
     for(int i = 1; i <= alen; ++i) {
         for(int j = 1; j <= blen; ++j) {
-            if (stra[i] == strb[i]) 
+            if (stra[i] == strb[j]) 
                 L[i][j] = L[i - 1][j - 1]; 
             else 
-                L[i][j] = max(L[i - 1][j - 1], L[i - 1][j], L[i][j - 1]) + 1; 
+                L[i][j] = min({L[i - 1][j - 1], L[i - 1][j], L[i][j - 1]}) + 1; 
         }
     }
     cout << L[alen][blen]; 
