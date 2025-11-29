@@ -1,0 +1,57 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std; 
+const int MAXN = 2e5 + 5; 
+
+int q[MAXN], r[MAXN];
+long long k, n;
+bool check (int m) {
+    int hi = m - 1, lo = 0; 
+    while (hi >= lo) {
+        if ( 1LL * (q[hi] + 1) * (1 + r[lo]) <= k + 1) {
+            hi--; lo++; 
+        }
+        else return 0;  
+    }
+    return 1; 
+}
+
+bool check1 (int m) {
+    int hi = m - 1, lo = 0; 
+    while (hi >= lo) {
+        if ( 1LL * (r[hi] + 1) * (1 + q[lo]) <= k + 1) {
+            hi--; lo++; 
+        }
+        else return 0;  
+    }
+    return 1; 
+}
+
+int main() {
+    ios_base::sync_with_stdio(0); 
+    cin.tie(0); cout.tie(0); 
+
+    int t; cin >> t; 
+
+    while(t--) {
+        cin >> n >> k; 
+
+        for(int i = 0; i < n; ++i) cin >> q[i]; 
+        for(int i = 0; i < n; ++i) cin >> r[i]; 
+
+        sort(r, r + n); 
+        sort(q, q + n); 
+        int hi = n; int lo = 0;
+        int ans = 0; 
+        while(hi >= lo) {
+            int mid = (hi + lo) / 2; 
+            if (check(mid) && check1(mid)) {
+                ans = mid;
+                lo = mid + 1; 
+            }
+            else hi = mid - 1; 
+        }
+        cout << ans << '\n'; 
+    }
+}
