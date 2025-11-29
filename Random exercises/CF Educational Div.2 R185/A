@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+ 
+using namespace std;
+int n; 
+ 
+long long val(int x) {
+    long long sum = 0;
+    sum += x;  
+    if ((x - 2) / n == (x - 1) / n ) sum += x - 1; 
+    if (x / n == (x - 1) / n) sum += x + 1; 
+    if ((x - n - 1) / n + 1 > 0 ) sum += (x - n); 
+    if ((x + n - 1) / n + 1 <= n ) sum += (x + n); 
+    return sum; 
+}
+ 
+int main() {
+    ios_base::sync_with_stdio(0); 
+    cin.tie(0); cout.tie(0); 
+ 
+    int t; cin >> t; 
+ 
+    while(t--) {
+        cin >> n;
+ 
+        long long sum = 0; 
+        for(int i = 1; i <= n * n; ++i) {
+            sum = max(sum, val(i));
+        }
+        
+        cout << sum << '\n';  
+    }
+}
+
+//https://codeforces.com/contest/2170/problem/A
