@@ -79,6 +79,14 @@ struct LCA {
   
         return up[u][0]; 
     }
+
+    int jump(int u, int k) {
+        for(int i = k; i; i -= (i & (-i))) {
+            int x = __builtin_ctz(i); 
+            u = up[u][x]; 
+        }
+        return u; 
+    }
 } lca; 
 
 int main() {
