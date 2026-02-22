@@ -5,7 +5,10 @@ using namespace std;
 
 vector<int> bit1, bit2; 
 /* Theo lý thuyết tính toán, ta quy ước bit1 tương đương với mảng diff của a => tổng của các diff từ 1 -> diff[i] chính là a[i]
-   Tương tự, ta suy ra được là : sum[i] = sigma(n - j + 1) * diff[j] với j chạy từ 1 -> i ------> bit2 được dùng để lưu mảng này
+   Tương tự, ta suy ra được là : sum[i] = sigma(n - j + 1) * diff[j] - (n - i) * sigma(diff[1 -> i])với j chạy từ 1 -> i 
+   ------> bit2 được dùng để lưu phần đầu của mảng này
+
+   Đọc thêm tại https://wiki.vnoi.info/algo/data-structures/fenwick
 */
 
 void updatepoint(vector<int>& bit, int u, int v) { 
