@@ -1,3 +1,5 @@
+// Author : An Dương
+
 void build()
 {
     for(int id = N + 1; id <= (N<<1); ++id) ST[id] = 1;
