@@ -4,35 +4,35 @@ using namespace std;
 
 string check(int n, string z, bool fh) {
     int m = n / 2;
-    string target, source;
+    string targ;
     int si, ti, skip = 0;
     string res = "";
 
     if (fh) {
-        target = z.substr(n - m, m);
+        targ = z.substr(n - m, m);
         si = 0; ti = 0;
         while (ti < m && si <= m) {
-            if (z[si] == target[ti]) {
+            if (z[si] == targ[ti]) {
                 si++; ti++;
             } else {
                 if (skip++) break;
                 si++;
             }
         }
-        return (ti == m) ? target : "";
+        return (ti == m) ? targ : "";
     } else {
-        target = z.substr(0, m);
+        targ = z.substr(0, m);
         si = m; ti = 0;
 
         while (ti < m && si < n) {
-            if (z[si] == target[ti]) {
+            if (z[si] == targ[ti]) {
                 si++; ti++;
             } else {
                 if (skip++) break;
                 si++;
             }
         }
-        return (ti == m) ? target : "";
+        return (ti == m) ? targ : "";
     }
 }
 
