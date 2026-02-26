@@ -4,7 +4,7 @@ using namespace std;
 
 string check(int n, string z, bool fh) {
     int m = n / 2;
-    string targ;
+    string targ, sour;
     int si, ti, skip = 0;
     string res = "";
 
@@ -13,10 +13,11 @@ string check(int n, string z, bool fh) {
         si = 0; ti = 0;
         while (ti < m && si <= m) {
             if (z[si] == targ[ti]) {
-                si++; ti++;
+                ++si; 
+                ++ti;
             } else {
                 if (skip++) break;
-                si++;
+                ++si;
             }
         }
         return (ti == m) ? targ : "";
@@ -26,10 +27,11 @@ string check(int n, string z, bool fh) {
 
         while (ti < m && si < n) {
             if (z[si] == targ[ti]) {
-                si++; ti++;
+                ++si; 
+                ++ti;
             } else {
                 if (skip++) break;
-                si++;
+                ++si;
             }
         }
         return (ti == m) ? targ : "";
