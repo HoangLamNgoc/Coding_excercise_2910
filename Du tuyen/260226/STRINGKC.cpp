@@ -31,10 +31,7 @@ int main() {
     bool ok2 = (s3 == s4);
 
     if (ok1 && ok2) {
-        if (s1 == s3)
-            cout << s1;
-        else
-            cout << "Multiple Solutions";
+        cout << "Multiple Solutions";
     }
     else if (ok1) cout << s1;
     else if (ok2) cout << s3;
