@@ -1,40 +1,51 @@
 #include <bits/stdc++.h>
-
-using namespace std; 
+using namespace std;
 
 int main() {
-    ios_base::sync_with_stdio(0); 
-    cin.tie(0); 
-    
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+
     freopen("MINMM.INP", "r", stdin);
-    freopen("MINMM.OUT", "w", stdout); 
-    
-    int n, k; 
-    cin >> n >> k; 
+    freopen("MINMM.OUT", "w", stdout);
 
-    vector<int> arr(n); 
-    for(int i = 0; i < n; ++i) cin >> arr[i]; 
+    int n, k;
+    cin >> n >> k;
 
-    sort(arr.begin(), arr.end()); 
+    vector<int> arr(n);
+    for (int i = 0; i < n; ++i) cin >> arr[i];
 
-    vector<int> diff(n); 
-    for(int i = 0; i < n - 1; ++i) {
-        diff[i] = arr[i + 1] - arr[i]; 
+    sort(arr.begin(), arr.end());
+
+    int m = n - k;  
+
+    vector<int> diff(n - 1);
+    for (int i = 0; i < n - 1; ++i)
+        diff[i] = arr[i + 1] - arr[i];
+
+    deque<int> dq;
+
+    for (int i = 0; i < m - 1; ++i) {
+        while (!dq.empty() && diff[i] < diff[dq.back()])
+            dq.pop_back();
+        dq.push_back(i);
     }
 
-    int i = 0; 
-    int j = n - 1; 
+    long long ans = 1LL * diff[dq.front()] + (arr[m - 1] - arr[0]);
 
-    while (k && i < j) {
-        if (diff[i] > diff[j - 1]) 
-            ++i;
-        else --j; 
-        --k; 
+    for (int i = 1; i + m - 1 < n; ++i) {
+        while (!dq.empty() && dq.front() < i)
+            dq.pop_front();
+
+        int j = i + m - 2;
+        while (!dq.empty() && diff[j] < diff[dq.back()])
+            dq.pop_back();
+        dq.push_back(j);
+
+        long long range = arr[i + m - 1] - arr[i];
+        long long min_diff = diff[dq.front()];
+
+        ans = min(ans, range + min_diff);
     }
 
-    long long M = arr[j] - arr[i]; 
-    sort(diff.begin() + i, diff.begin() + j);   
-
-    long long m = diff[i]; 
-    cout << M + m << '\n'; 
+    cout << ans << '\n';
 }
