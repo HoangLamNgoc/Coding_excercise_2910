@@ -66,14 +66,13 @@ int main() {
 
             if (it->x < x - d) {
                 T.erase(it);
-                break;
+                continue;
             }
 
             long long new_d = calc(*it, pt);
 
             if (new_d < sqrtd) {
                 sqrtd = new_d;
-                // ghi nhận đáp án mới
             }
 
             cur = *it;
@@ -82,5 +81,5 @@ int main() {
         T.insert(pt);
     }
 
-    cout << sqrt(sqrtd);
+    cout << sqrtd;
 }
