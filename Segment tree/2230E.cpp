@@ -103,7 +103,7 @@ void solve(int L, int R, vector<piiii>& que) {
             buck[idx_L].push_back(a); 
             buck[idx_R].push_back(a);
         }
-        else if (idx_R < M) //bug2 : luon nho qL va qR la idx chu khong phai la chi so 
+        else if (idx_R < M) //bug2 : luon nho qL va qR la idx chu khong phai la gia tri
             queL.push_back(a); 
         else 
             queR.push_back(a); 
