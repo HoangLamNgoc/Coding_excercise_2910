@@ -1,0 +1,96 @@
+#include <bits/stdc++.h>
+
+using namespace std; 
+const int MAXN = 2e5 + 5; 
+const int MAXR = 25e3 + 2; 
+const int MAXH = 505; 
+
+int n, r, q; 
+vector<int> cnt[MAXR]; 
+vector<int> adj[MAXN]; 
+
+int tour[MAXN], en[MAXN], st[MAXN]; 
+int tin = 0; 
+
+int col[MAXN];
+int id[MAXR]; 
+int m = 0; 
+
+long long res[MAXH][MAXR];
+
+int ans[MAXH];
+
+void dfs(int u, int p) {
+    st[u] = ++tin; 
+    tour[tin] = u; 
+    
+    for(int i = 1; i <= m; ++i) 
+        res[i][col[u]] += (long long)ans[i];
+
+    if (id[col[u]]) 
+        ++ans[id[col[u]]]; //dung bien dem duoc ne 
+
+    for(int v : adj[u]) {
+        if (v == p) continue; 
+
+        dfs(v, u); 
+    }
+
+    if (id[col[u]]) 
+        --ans[id[col[u]]]; 
+
+    en[u] = tin; 
+}
+
+int main() {
+    ios_base::sync_with_stdio(0); 
+    cin.tie(0); 
+
+    cin >> n >> r >> q;
+
+    cin >> col[1]; 
+    cnt[col[1]].emplace_back(1); //nho cnay 
+
+    for(int p, x, i = 2; i <= n; ++i) {
+        cin >> p >> x; 
+
+        col[i] = x; 
+        cnt[x].emplace_back(i); 
+
+        adj[i].emplace_back(p); 
+        adj[p].emplace_back(i); 
+    }
+
+    int lim = sqrt(n);
+    for(int i = 1; i <= r; ++i) {
+        if (cnt[i].size() < lim) {}
+        else 
+            id[i] = ++m; 
+    }
+
+    dfs(1, 0);
+
+    for(int i = 1; i <= r; ++i) {        
+        for(int& c : cnt[i]) 
+            c = st[c]; 
+        sort(cnt[i].begin(), cnt[i].end()); //nho sort
+    }
+
+    while (q--) {
+        int r1, r2; 
+        cin >> r1 >> r2; 
+
+        if (id[r1]) cout << res[id[r1]][r2] << "\n"; 
+        else {
+            long long hello = 0LL; 
+            for(int c : cnt[r1]) {
+                int id1 = lower_bound(cnt[r2].begin(), cnt[r2].end(), c) - cnt[r2].begin();
+                int id2 = upper_bound(cnt[r2].begin(), cnt[r2].end(), en[tour[c]]) - cnt[r2].begin();  
+
+                hello += 1ll * (id2 - id1); 
+            }
+            cout << hello << '\n'; 
+        } 
+        cout.flush(); 
+    }
+}
